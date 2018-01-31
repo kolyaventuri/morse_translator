@@ -4,22 +4,27 @@ require './lib/Translator.rb'
 
 class TranslatorTest < Minitest::Test
 
+  def setup
+    @translator = Translator.new
+  end
+
   def test_translator_object_exists
-    translator = Translator.new
-    assert_instance_of Translator, translator
+    assert_instance_of Translator, @translator
   end
 
   def test_translator_does_eng_to_morse
-    translator = Translator.new
-    assert_equal "......-...-..--- .-----.-..-..-..", translator.eng_to_morse("hello world")
+    assert_equal "......-...-..--- .-----.-..-..-..", @translator.eng_to_morse("hello world")
 
     # Case insensitive
-    assert_equal "......-...-..--- .-----.-..-..-..", translator.eng_to_morse("hELlO wORlD")
+    assert_equal "......-...-..--- .-----.-..-..-..", @translator.eng_to_morse("hELlO wORlD")
 
     # Numbers
-    assert_equal "-......-.. .-.-.. ...-- ..........--....", translator.eng_to_morse("There are 3 ships")
+    assert_equal "-......-.. .-.-.. ...-- ..........--....", @translator.eng_to_morse("There are 3 ships")
   end
 
 
+  def test_translator_loads_from_file
+    assert_equal ".. .--- ..-. .- ..-....-...", @translator.from_file("input.txt")
+  end
 
 end
