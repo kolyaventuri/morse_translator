@@ -1,5 +1,3 @@
-require 'pry';
-
 class Translator
   attr_reader :dictionary
 
