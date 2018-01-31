@@ -45,7 +45,6 @@ class Translator
     letters = text.downcase.split("")
     morse_chars = letters.map do | char |
       morse_char = @dictionary[char]
-      morse_char = " " if(morse_char.nil?)
 
       morse_char
     end
