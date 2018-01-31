@@ -22,8 +22,8 @@ class TranslatorTest < Minitest::Test
     assert_equal "-......-.. .-.-.. ...-- ..........--....", @translator.eng_to_morse("There are 3 ships")
   end
 
-
   def test_translator_loads_from_file
+    assert_nil @translator.from_file("not_exist.txt")
     assert_equal ".. .--- ..-. .- ..-....-...", @translator.from_file("input.txt")
   end
 

@@ -52,4 +52,16 @@ class Translator
 
     morse_chars.join("")
   end
+
+  def from_file(filename)
+    if(!File.exist?(filename))
+      puts "File does not exist!"
+    else
+      File.open(filename, 'r') do | file |
+        text = file.read.gsub(/[\W]/, " ")
+        eng_to_morse(text)
+      end
+    end
+
+  end
 end
