@@ -42,7 +42,7 @@ class Translator
   end
 
   def eng_to_morse(text)
-    letters = text.split("")
+    letters = text.downcase.split("")
     morse_chars = letters.map do | char |
       morse_char = @dictionary[char]
       morse_char = " " if(morse_char.nil?)
