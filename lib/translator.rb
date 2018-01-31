@@ -59,7 +59,6 @@ class Translator
     alpha_numeric_words = words.map do | word |
       chars = word.split(" ")
       alpha_num_char = chars.map do | char |
-
         @dictionary.key(char)
       end
 
