@@ -1,3 +1,5 @@
+require 'pry';
+
 class Translator
   attr_reader :dictionary
 
@@ -54,39 +56,21 @@ class Translator
   end
 
   def morse_to_eng(text)
-    all_chars = text.downcase.split("")
-    morse_chars = text.downcase.split(" ")
+    words = text.downcase.split("  ")
 
-    chars = []
-    morse_chars.each_with_index do | char, index |
-      temp_char = ""
-      char.length.times do
-        temp_char += all_chars.shift
+    alpha_numeric_words = words.map do | word |
+      chars = word.split(" ")
+      alpha_num_char = chars.map do | char |
+
+        @dictionary.key(char)
       end
-      chars.push(temp_char)
-      if(all_chars[0..1].join("") == "  ")
-        all_chars.shift(2)
-        chars.push(" ")
-      elsif(all_chars[0] == " ")
-        all_chars.shift
-      end
+
+      alpha_num_char.join("")
     end
 
-    final_text = ""
-    chars.each do | char |
-      if(char == " ")
-        final_text += " "
-      else
-        alpha_num_char = @dictionary.key(char)
-        if(alpha_num_char)
-          final_text += alpha_num_char
-        end
-      end
-
-    end
-
-    final_text
+    alpha_numeric_words.join(" ")
   end
+
 
   def from_file(filename)
     if(!File.exist?(filename))
