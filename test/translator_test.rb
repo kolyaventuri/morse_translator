@@ -1,1 +1,1 @@
-# YOUR TESTS GO IN HERE!
+require_relative 'test_helper'
